@@ -6,15 +6,17 @@ import pandas as pd
 import statsmodels.api as sm
 from scipy.stats import f
 
-# year      i3        inf       rec       out       def       i3_1      inf_1
-# def_1     ci3       cinf      cdef      y77
+# year      i3        inf       rec       out       def       i3_1
+# inf_1     def_1     ci3       cinf      cdef      y77
 
 
 PATH = os.path.abspath(os.path.dirname(__file__))
 
 
 def main():
-    df = pd.read_csv(PATH + "/data/textfiles/intdef.raw", delim_whitespace=True, header=None)
+    df = pd.read_csv(
+        PATH + "/data/textfiles/intdef.raw", delim_whitespace=True, header=None
+    )
 
     # ex.1:
     year = df[0]
@@ -100,12 +102,12 @@ def main():
 
     # unrestricted model
     y = i3[2:n]
+    y_1 = i3[1 : n - 1]
+    y_2 = i3[0 : n - 2]
     inf_1 = inf[1 : n - 1]
     inf_2 = inf[0 : n - 2]
-    def_1 = deficit[1 : n - 1]
-    def_2 = deficit[0 : n - 2]
     const = np.ones(n - 2)
-    X = np.column_stack((const, inf_1, inf_2, def_1, def_2))
+    X = np.column_stack((const, y_1, y_2, inf_1, inf_2))
 
     model = sm.OLS(y, X)
     results = model.fit()
@@ -114,7 +116,7 @@ def main():
     SSR_ur = results.ssr
 
     # restricted model
-    X = np.column_stack((const, def_1, def_2))
+    X = np.column_stack((const, y_1, y_2))
 
     model = sm.OLS(y, X)
     results = model.fit()
