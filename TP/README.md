@@ -1,8 +1,8 @@
 ## Laboratories:
 
-- [TP1 - Basic operations](TP1)
-- [TP2 - Linear Models](TP2)
-- [TP3 - Hypothesis testing](TP3)
-- [TP4 - Heteroskedasticity](TP4)
-- [TP5 - Time Series 1](TP5)
-- [TP6 - Time Series 2](TP6)
+- [TP1 - Basic operations](tp1.py)
+- [TP2 - Linear Models](tp2.py)
+- [TP3 - Hypothesis testing](tp3.py)
+- [TP4 - Heteroskedasticity](tp4.py)
+- [TP5 - Time Series 1](tp5.py)
+- [TP6 - Time Series 2](tp6.py)
